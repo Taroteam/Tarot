@@ -9,6 +9,7 @@ public class Joueur {
     private String nom;
     private String sexe;
     private double[] score = new double[100];
+    private double[] cumulScore = new double[100];
 
     // Constructor
     public Joueur(String nom, String sexe) {
@@ -48,6 +49,9 @@ public class Joueur {
         for (int i = 1; i <= j; i++){
             temp = temp + score[i-1];
         }
+        cumulScore[j] = temp;
         return temp;
     }
+
+
 }

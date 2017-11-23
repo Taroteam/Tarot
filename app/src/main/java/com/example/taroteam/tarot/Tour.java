@@ -299,11 +299,15 @@ public class Tour {
             }
         }
 
+        // Trier les scores
+        for (int i = 1; i <= 5; i++){
+            partie.switchRows(i,partie.getBestRow(i,5,j));
+        }
 
         // Afficher les scores
         System.out.println("############## Résultats cumulés au tour n°" + j +" ##############");
         for (int i = 1; i <=5; i++){
-            System.out.println(partie.getJoueur(i).getNom() + " : " + partie.getJoueur(i).getCumulScore(j));
+            System.out.println(i + ". " + partie.getJoueur(i).getNom() + " : " + partie.getJoueur(i).getCumulScore(j));
         }
         System.out.println("###########################################################");
         System.out.println("");
