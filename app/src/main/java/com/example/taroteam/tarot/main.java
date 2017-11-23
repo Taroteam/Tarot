@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) {
         // Joueurs fixes
 
-        Joueur joueur1 = new Joueur("Cedric", "M");
+        Joueur joueur1 = new Joueur("Cédric", "M");
         Joueur joueur2 = new Joueur("Diana", "F");
         Joueur joueur3 = new Joueur("JK", "M");
         Joueur joueur4 = new Joueur("Aline", "F");
