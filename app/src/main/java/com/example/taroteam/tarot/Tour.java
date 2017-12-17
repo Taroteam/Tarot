@@ -306,8 +306,9 @@ public class Tour {
 
 
         // Calcul
-        double contrat = multipleContrat() * (25 + Math.abs(seuilContrat()-Points));
-        double primes = multiplePetitAuBout() * multipleContrat() * 10 + bonusChelem()+ bonusPoignée();
+        double ecart = (double) Points - seuilContrat();
+        double contrat = multipleContrat() * (25 + Math.abs(ecart));
+        double primes = multiplePetitAuBout() * multipleContrat() * 10 + bonusChelem() + contratRempli() * bonusPoignée();
         double enjeu = contratRempli() * contrat + primes;
         System.out.println("");
         System.out.println("Contrat : " + contratRempli() * contrat);
