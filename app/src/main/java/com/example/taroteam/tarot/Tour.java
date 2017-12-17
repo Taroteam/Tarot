@@ -13,7 +13,8 @@ public class Tour {
     private String Contrat;
     private double Points;
     private String PetitAuBout;
-    private String Poignée;
+    private String Poignée1;
+    private String Poignée2;
     private int NbBouts;
     private boolean ChelemAnnoncé;
     private boolean ChelemRéalisé;
@@ -44,9 +45,14 @@ public class Tour {
         PetitAuBout = petitAuBout;
     }
 
-    public void setPoignée(String poignée) {
-        Poignée = poignée;
+    public void setPoignée1(String poignée) {
+        Poignée1 = poignée;
     }
+
+    public void setPoignée2(String poignée) {
+        Poignée2 = poignée;
+    }
+
 
     public void setNbBouts(int nbBouts) {
         NbBouts = nbBouts;
@@ -85,8 +91,12 @@ public class Tour {
         return PetitAuBout;
     }
 
-    public String getPoignée() {
-        return Poignée;
+    public String getPoignée1() {
+        return Poignée1;
+    }
+
+    public String getPoignée2() {
+        return Poignée2;
     }
 
     public int getNbBouts() {
@@ -145,10 +155,27 @@ public class Tour {
 
     // Bonus Poignée
     public int bonusPoignée(){
-        if (Poignée == "Simple") return 20;
-        if (Poignée == "Double") return 30;
-        if (Poignée == "Triple") return 40;
-        return 0;
+        int bonus = 0;
+        if (Poignée1 == "Simple"){
+            bonus = bonus + 20;
+        }
+        if (Poignée1 == "Double"){
+            bonus = bonus + 30;
+        };
+        if (Poignée1 == "Triple"){
+            bonus = bonus + 40;
+        }
+
+        if (Poignée2 == "Simple"){
+            bonus = bonus + 20;
+        }
+        if (Poignée2 == "Double"){
+            bonus = bonus + 30;
+        };
+        if (Poignée2 == "Triple"){
+            bonus = bonus + 40;
+        }
+        return bonus;
     }
 
     // Bonus Chelem
@@ -255,9 +282,21 @@ public class Tour {
 
         // Poignée ?
         Scanner scPoignée = new Scanner(System.in);
-        System.out.print("Poignée Simple (8 atouts), Double (10), Triple (13), non : ");
+        System.out.print("Poignée Simple (8 atouts), Double (10), Triple (13), Multiple, non: ");
         String strPoignée = scPoignée.nextLine().intern();
-        Poignée = strPoignée;
+        Poignée1 = strPoignée;
+        if (strPoignée == "Multiple"){
+            Scanner scPoignée1 = new Scanner(System.in);
+            System.out.print("1. Simple (8), Double (10), Triple (13): ");
+            String strPoignée1 = scPoignée1.nextLine().intern();
+            Poignée1 = strPoignée1;
+
+            Scanner scPoignée2 = new Scanner(System.in);
+            System.out.print("2. Simple (8), Double (10), Triple (13): ");
+            String strPoignée2 = scPoignée2.nextLine().intern();
+            Poignée2 = strPoignée2;
+        }
+
 
         // Roi Appelé
         Scanner scRoiAppelé = new Scanner(System.in);
@@ -267,15 +306,19 @@ public class Tour {
 
 
         // Calcul
-        double enjeu = multipleContrat() * (25 + Math.abs(seuilContrat()-Points)) + multiplePetitAuBout() * multipleContrat() * 10 + bonusPoignée() + bonusChelem();
+        double contrat = multipleContrat() * (25 + Math.abs(seuilContrat()-Points));
+        double primes = multiplePetitAuBout() * multipleContrat() * 10 + bonusChelem()+ bonusPoignée();
+        double enjeu = contratRempli() * contrat + primes;
         System.out.println("");
-        System.out.println("Points en jeu : " + enjeu);
+        System.out.println("Contrat : " + contratRempli() * contrat);
+        System.out.println("+ Primes : " + primes);
+        System.out.println("= Enjeu : " + enjeu);
         System.out.println("");
 
         // Affectation des points
 
         if (Attaquant.getNom() == Appelé.getNom()) {
-            Attaquant.setScore(4 * contratRempli() * enjeu, j);
+            Attaquant.setScore(4 * enjeu, j);
             for (int i = 1; i <= 5; i++){
                 if (partie.getJoueur(i).getNom() != Attaquant.getNom()){
                     partie.getJoueur(i).setScore(-Attaquant.getScore()[j-1]/4, j);
@@ -283,8 +326,8 @@ public class Tour {
             }
         }
         else {
-            Attaquant.setScore(2 * contratRempli() * enjeu, j);
-            Appelé.setScore(contratRempli() * enjeu, j);
+            Attaquant.setScore(2 * enjeu, j);
+            Appelé.setScore(enjeu, j);
             for (int i = 1; i <= 5; i++) {
                 if (partie.getJoueur(i).getNom() != Attaquant.getNom() && partie.getJoueur(i).getNom() != Appelé.getNom()) {
                     partie.getJoueur(i).setScore(-(Attaquant.getScore()[j-1] + Appelé.getScore()[j-1])/3,j);
