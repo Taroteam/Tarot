@@ -7,7 +7,7 @@
     tools:context="com.example.taroteam.tarot.homepage">
 
     <Button
-        android:id="@+id/nouvellepartie"
+        android:id="@+id/nouvellePartie"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="188dp"
         android:layout_height="106dp"
@@ -79,7 +79,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nouvellepartie"
+        app:layout_constraintTop_toBottomOf="@+id/nouvellePartie"
         app:layout_constraintVertical_bias="0.087"
         tools:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/goHelp"
+        android:layout_width="52dp"
+        android:layout_height="36dp"
+        android:text="?"
+        app:layout_constraintBottom_toTopOf="@+id/joueurs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
 </android.support.constraint.ConstraintLayout>

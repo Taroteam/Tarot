@@ -6,19 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class newGame extends AppCompatActivity {
+public class newDeal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_game);
+        setContentView(R.layout.activity_new_deal);
 
-        Button btnStartGame = (Button) findViewById(R.id.startGame);
-        btnStartGame.setOnClickListener(new View.OnClickListener(){
+        Button btnGoPodium = (Button) findViewById(R.id.goPodium);
+        btnGoPodium.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(newGame.this, scores.class));
-            }
+                startActivity(new Intent(newDeal.this, podium.class));
 
-        });
+            }});
     }
 }

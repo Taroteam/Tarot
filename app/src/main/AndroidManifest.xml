@@ -17,7 +17,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".newGame" />
-        <activity android:name=".scores"></activity>
+        <activity android:name=".scores" />
+        <activity android:name=".newDeal" />
+        <activity android:name=".podium" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".help" />
+        <activity android:name=".statistics" />
+        <activity android:name=".players" />
+        <activity android:name=".loadGame"></activity>
     </application>
 
 </manifest>

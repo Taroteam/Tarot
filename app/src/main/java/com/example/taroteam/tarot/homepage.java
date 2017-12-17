@@ -14,11 +14,47 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         // Listener - Bouton "Nouvelle Partie"
-        Button btnNewGame = (Button) findViewById(R.id.nouvellepartie);
-        btnNewGame.setOnClickListener(new View.OnClickListener() {
+        Button btnNouvellePartie = (Button) findViewById(R.id.nouvellePartie);
+        btnNouvellePartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(homepage.this, newGame.class));
+            }
+        });
+
+        // Listener - Bouton "Règles"
+        Button btnGoHelp = (Button) findViewById(R.id.goHelp);
+        btnGoHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(homepage.this, help.class));
+            }
+        });
+
+        // Listener - Bouton "Statistiques"
+        Button btnStats = (Button) findViewById(R.id.stats);
+        btnStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(homepage.this, statistics.class));
+            }
+        });
+
+        // Listener - Bouton "Règles"
+        Button btnJoueurs = (Button) findViewById(R.id.joueurs);
+        btnJoueurs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(homepage.this, players.class));
+            }
+        });
+
+        // Listener - Bouton "Charger partie"
+        Button btnReprendrePartie = (Button) findViewById(R.id.reprendrepartie);
+        btnReprendrePartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(homepage.this, loadGame.class));
             }
         });
 
