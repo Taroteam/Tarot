@@ -4,18 +4,28 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class newGame extends AppCompatActivity {
+public class newGame extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+
+        // Bouton StartGame à faire apparaître dès que nb(joueurs sélectionnés) > 5
+        Button btnStartGame = (Button) findViewById(R.id.startGame);
+        btnStartGame.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(newGame.this, scores.class));
+            }
+
+        });
 
 
         // Création (artificielle) de la base de données de joueurs (à remplacer par appel des données de SharedPreferences (cf
@@ -41,22 +51,27 @@ public class newGame extends AppCompatActivity {
         BDD_Joueur partie = bddJ;
 
         ArrayList<String> joueurs = new ArrayList<>();
-        for (int i = 0; i <= bddJ.getBddCount(); i++){
+        for (int i = 0; i <= bddJ.getBddCount()-1; i++){
             joueurs.add(bddJ.getBddJoueur()[i].getNom());
         }
 
-/*        Spinner spinnerP1 = (Spinner) findViewById(R.id.spinnerP1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(newGame.this, android.R.layout.simple_spinner_item, joueurs);
+
+        Spinner spinnerJ1 = (Spinner) findViewById(R.id.spinnerP1);
+        ArrayAdapter adapter = new ArrayAdapter(newGame.this, android.R.layout.simple_spinner_item, joueurs);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerP1.setAdapter(adapter);*/
+        spinnerJ1.setAdapter(adapter);
+        spinnerJ1.setOnItemSelectedListener(this);
 
+        }
 
-        Button btnStartGame = (Button) findViewById(R.id.startGame);
-        btnStartGame.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(newGame.this, scores.class));
-            }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+        String selectedJ1 = parent.getItemAtPosition(position).toString();
 
-        });
+       }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
