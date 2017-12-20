@@ -1,5 +1,7 @@
 package com.example.taroteam.tarot;
 
+import java.util.Arrays;
+
 /**
  * Created by JK on 23/11/2017.
  */
@@ -21,6 +23,8 @@ public class main {
         partie.ajouterJoueur(joueur4);
         partie.ajouterJoueur(joueur5);
 
+
+        System.out.println(partie.getBddJoueur()[0].getNom());
         // Tour 1
 
         Tour tour1 = new Tour();

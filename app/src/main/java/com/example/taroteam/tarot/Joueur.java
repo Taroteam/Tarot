@@ -32,7 +32,7 @@ public class Joueur {
 
     // Getters
     public String getNom() {
-        return nom;
+        return nom.intern();
     }
 
     public String getSexe() {

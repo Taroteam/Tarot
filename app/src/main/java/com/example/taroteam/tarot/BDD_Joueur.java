@@ -1,5 +1,7 @@
 package com.example.taroteam.tarot;
 
+import java.util.ArrayList;
+
 /**
  * Created by JK on 23/11/2017.
  */
@@ -14,6 +16,19 @@ public class BDD_Joueur {
         bddJoueur = new Joueur[100];
         bddCount = 0;
     }
+
+    // Getter bddJoueur
+
+    public Joueur[] getBddJoueur() {
+        return bddJoueur;
+    }
+
+    // Getter bddJoueur Name indexé
+
+    public String getBddJoueurName(int numJoueur){
+        return bddJoueur[numJoueur-1].getNom();
+    }
+
 
     // Getter bddCount
 

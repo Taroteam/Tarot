@@ -47,15 +47,14 @@
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/goHome"
-        android:layout_width="70dp"
-        android:layout_height="44dp"
-        android:text="Home"
-        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:elevation="5dp"
+        app:srcCompat="@drawable/home_white"
+        tools:layout_editor_absoluteX="336dp"
+        tools:layout_editor_absoluteY="9dp" />
 </android.support.constraint.ConstraintLayout>
