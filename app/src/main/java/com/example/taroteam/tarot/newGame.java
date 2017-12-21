@@ -8,10 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class newGame extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class newGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,23 +56,34 @@ public class newGame extends AppCompatActivity implements AdapterView.OnItemSele
             joueurs.add(bddJ.getBddJoueur()[i].getNom());
         }
 
+        // Spinner J1
 
-        Spinner spinnerJ1 = (Spinner) findViewById(R.id.spinnerP1);
-        ArrayAdapter adapter = new ArrayAdapter(newGame.this, android.R.layout.simple_spinner_item, joueurs);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerJ1.setAdapter(adapter);
-        spinnerJ1.setOnItemSelectedListener(this);
+        final Spinner spinnerJ1 = (Spinner) findViewById(R.id.spinnerP1);
+        ArrayAdapter adapter1 = new ArrayAdapter(newGame.this, android.R.layout.simple_spinner_item, joueurs);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerJ1.setAdapter(adapter1);
 
-        }
+        // Spinner J2
+        final TextView txtP2 = (TextView) findViewById(R.id.txtJoueur2);
+        final Spinner spinnerJ2 = (Spinner) findViewById(R.id.spinnerP2);
+        ArrayAdapter adapter2 = new ArrayAdapter(newGame.this, android.R.layout.simple_spinner_item, joueurs);
+        spinnerJ2.setAdapter(adapter2);
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-        String selectedJ1 = parent.getItemAtPosition(position).toString();
+        spinnerJ1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch(parent.getId()){
+                    case R.id.spinnerP1:
+                        txtP2.setVisibility(View.VISIBLE);
+                        spinnerJ2.setVisibility(View.VISIBLE);
 
-       }
+                }
+            }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-}
+            }
+        });
+
+}}
