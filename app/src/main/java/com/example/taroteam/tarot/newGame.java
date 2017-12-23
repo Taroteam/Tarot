@@ -1,6 +1,7 @@
 package com.example.taroteam.tarot;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +11,20 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class newGame extends AppCompatActivity {
+
+    public Object[] deleteSelectedJoueur(String[] joueurs, String alreadySelectedJoueur){
+        List temp = asList(joueurs);
+        temp.remove(alreadySelectedJoueur);
+        return temp.toArray();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +33,12 @@ public class newGame extends AppCompatActivity {
 
         final Button btnStartGame = (Button) findViewById(R.id.startGame);
 
+        FloatingActionButton btnGoHome = findViewById(R.id.goHome);
+        btnGoHome.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(newGame.this, homepage.class));
+
+            }});
 
 
         // Création (artificielle) de la base de données de joueurs (à remplacer par appel des données de SharedPreferences (cf
@@ -153,7 +171,6 @@ public class newGame extends AppCompatActivity {
                 if (position > 0) {
                     spinnerJ6.setVisibility(View.VISIBLE);
                     txtP6.setVisibility(View.VISIBLE);
-                    // Bouton StartGame
 
                     btnStartGame.setVisibility(View.VISIBLE);
 
@@ -165,13 +182,15 @@ public class newGame extends AppCompatActivity {
             }
         });
 
-        if (btnStartGame.getVisibility() == View.VISIBLE) {
             btnStartGame.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    startActivity(new Intent(newGame.this, scores.class));
+
+                    if (btnStartGame.getVisibility() == View.VISIBLE) {
+                        startActivity(new Intent(newGame.this, scores.class));
+                    }
                 }
             });
         }
 
 
-    }}
+    }
